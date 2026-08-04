@@ -49,6 +49,25 @@ const processSteps = [
   ["03", "You review & file", "Review the completed documents and stay in control of the filing process."],
 ];
 
+const trustItems = [
+  {
+    icon: <span className="trust-fee-symbol">$</span>,
+    label: "Flat-fee options",
+  },
+  { icon: "✓", label: "Accurate preparation" },
+  {
+    icon: (
+      <span className="trust-control-symbol">
+        <span />
+        <span />
+        <span />
+      </span>
+    ),
+    label: "You stay in control",
+  },
+  { icon: "CA", label: "Serving California" },
+];
+
 export default function Home() {
   useEffect(() => {
     const elements = document.querySelectorAll<HTMLElement>(".reveal");
@@ -109,12 +128,7 @@ export default function Home() {
 
       <section className="trust-bar" aria-label="Why clients choose us">
         <div className="shell trust-grid">
-          {[
-            ["◇", "Flat-fee options"],
-            ["✓", "Accurate preparation"],
-            ["○", "You stay in control"],
-            ["CA", "Serving California"],
-          ].map(([icon, label]) => (
+          {trustItems.map(({ icon, label }) => (
             <div className="trust-item" key={label}>
               <span className="trust-icon" aria-hidden="true">{icon}</span>
               <span>{label}</span>

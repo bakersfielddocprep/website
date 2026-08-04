@@ -463,6 +463,49 @@ h1 {
   font-size: 14px;
 }
 
+.trust-fee-symbol {
+  font-family: var(--font-sans), Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.trust-control-symbol {
+  width: 17px;
+  display: grid;
+  gap: 4px;
+}
+
+.trust-control-symbol > span {
+  position: relative;
+  height: 1px;
+  background: currentColor;
+}
+
+.trust-control-symbol > span::after {
+  position: absolute;
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: var(--navy);
+  content: "";
+  transform: translate(-50%, -50%);
+}
+
+.trust-control-symbol > span:nth-child(1)::after {
+  left: 25%;
+}
+
+.trust-control-symbol > span:nth-child(2)::after {
+  left: 72%;
+}
+
+.trust-control-symbol > span:nth-child(3)::after {
+  left: 43%;
+}
+
 .section {
   padding-block: 116px;
 }
