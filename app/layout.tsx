@@ -15,7 +15,11 @@ const sans = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Bakersfield Doc Prep Co. | California Legal Document Assistant",
+  metadataBase: new URL("https://bakersfield-doc-prep.danny-villan.chatgpt.site"),
+  title: {
+    default: "Bakersfield Doc Prep Co. | California Legal Document Assistant",
+    template: "%s",
+  },
   description:
     "Professional, organized legal document preparation from a registered and bonded California Legal Document Assistant, LDA #232.",
   icons: {

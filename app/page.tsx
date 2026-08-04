@@ -1,10 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { SiteFooter } from "../components/SiteFooter";
+import { SiteHeader } from "../components/SiteHeader";
 
 const services = [
   {
     number: "01",
+    slug: "divorce-family",
     title: "Divorce & Family",
     description:
       "Clear, complete forms for divorce, separation, custody, and support.",
@@ -13,6 +16,7 @@ const services = [
   },
   {
     number: "02",
+    slug: "estate-planning",
     title: "Estate Planning",
     description:
       "Wills, trusts, powers of attorney, and advance health care directives.",
@@ -21,6 +25,7 @@ const services = [
   },
   {
     number: "03",
+    slug: "landlord-documents",
     title: "Landlord Documents",
     description:
       "Notices, leases, and rental documents done right the first time.",
@@ -30,12 +35,12 @@ const services = [
 ];
 
 const additionalServices = [
-  ["Probate Documents", "Organized preparation for petitions and supporting probate forms."],
-  ["Civil Responses", "Careful preparation of responses and related civil court documents."],
-  ["Small Claims", "Straightforward assistance preparing small claims paperwork."],
-  ["Criminal Record Relief", "Document preparation for eligible record-relief filings."],
-  ["Powers of Attorney", "Clear documents that help you plan for important decisions."],
-  ["Health Care Directives", "Preparation of advance health care directive documents."],
+  ["Probate Documents", "Organized preparation for petitions and supporting probate forms.", "probate-documents"],
+  ["Civil Responses", "Careful preparation of responses and related civil court documents.", "civil-responses"],
+  ["Small Claims", "Straightforward assistance preparing small claims paperwork.", "small-claims"],
+  ["Criminal Record Relief", "Preparation after you have identified the relief and forms you want.", "criminal-record-relief"],
+  ["Powers of Attorney", "Preparation using the agent, powers, and instructions you provide.", "powers-of-attorney"],
+  ["Health Care Directives", "Preparation using your selected agent and health care instructions.", "advance-health-care-directives"],
 ];
 
 const processSteps = [
@@ -45,8 +50,6 @@ const processSteps = [
 ];
 
 export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
-
   useEffect(() => {
     const elements = document.querySelectorAll<HTMLElement>(".reveal");
     const observer = new IntersectionObserver(
@@ -65,82 +68,9 @@ export default function Home() {
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMenuOpen(false);
-    };
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, []);
-
-  const closeMenu = () => setMenuOpen(false);
-
   return (
     <main>
-      <a className="skip-link" href="#content">
-        Skip to content
-      </a>
-
-      <div className="utility-bar">
-        <div className="shell utility-inner">
-          <span>Registered &amp; Bonded <i /> California LDA #232</span>
-          <a href="tel:+16612180111">
-            Call or text <strong>661 218 0111</strong>
-          </a>
-        </div>
-      </div>
-
-      <header className="site-header">
-        <div className="shell nav-inner">
-          <a className="brand" href="#top" aria-label="Bakersfield Doc Prep Co. home">
-            <span className="brand-mark-wrap">
-              <img src="/images/brand-mark.png" alt="" />
-            </span>
-            <span className="brand-name">
-              <strong>Bakersfield</strong>
-              <span>Doc Prep Co.</span>
-            </span>
-          </a>
-
-          <nav className="desktop-nav" aria-label="Primary navigation">
-            <a href="#services">Services</a>
-            <a href="#process">How it works</a>
-            <a href="#about">About</a>
-            <a href="#resources">Resources</a>
-          </nav>
-
-          <a className="button button-outline nav-cta" href="#contact">
-            Start your documents
-          </a>
-
-          <button
-            className="menu-toggle"
-            type="button"
-            aria-expanded={menuOpen}
-            aria-controls="mobile-menu"
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            onClick={() => setMenuOpen((open) => !open)}
-          >
-            <span />
-            <span />
-            <span />
-          </button>
-        </div>
-
-        <nav
-          id="mobile-menu"
-          className={`mobile-menu ${menuOpen ? "is-open" : ""}`}
-          aria-label="Mobile navigation"
-        >
-          <a href="#services" onClick={closeMenu}>Services</a>
-          <a href="#process" onClick={closeMenu}>How it works</a>
-          <a href="#about" onClick={closeMenu}>About</a>
-          <a href="#resources" onClick={closeMenu}>Resources</a>
-          <a className="button button-gold" href="#contact" onClick={closeMenu}>
-            Start your documents
-          </a>
-        </nav>
-      </header>
+      <SiteHeader />
 
       <section className="hero" id="top">
         <div className="hero-copy" id="content">
@@ -156,8 +86,8 @@ export default function Home() {
               Professional document preparation without the attorney retainer.
             </p>
             <div className="hero-actions">
-              <a className="button button-gold" href="#services">View services</a>
-              <a className="button button-outline" href="#process">How it works</a>
+              <a className="button button-gold" href="/services">View services</a>
+              <a className="button button-outline" href="/how-it-works">How it works</a>
             </div>
             <p className="disclaimer">
               We are not attorneys and cannot provide legal advice.
@@ -206,7 +136,7 @@ export default function Home() {
 
           <div className="service-grid">
             {services.map((service) => (
-              <a className="service-card reveal" href="#contact" key={service.title}>
+              <a className="service-card reveal" href={`/services/${service.slug}`} key={service.title}>
                 <div className="service-image">
                   <img src={service.image} alt={service.alt} />
                 </div>
@@ -287,14 +217,14 @@ export default function Home() {
               <h2>Documents prepared for the moments that matter.</h2>
             </div>
             <p>
-              Not sure which forms you need? Start with a conversation about the
-              document-preparation service you are looking for.
+              Use an attorney or official self-help resource to identify your forms.
+              Once selected, we can prepare them at your direction.
             </p>
           </div>
 
           <div className="additional-grid">
-            {additionalServices.map(([title, description], index) => (
-              <a className="mini-service reveal" href="#contact" key={title}>
+            {additionalServices.map(([title, description, slug], index) => (
+              <a className="mini-service reveal" href={`/services/${slug}`} key={title}>
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <div><h3>{title}</h3><p>{description}</p></div>
                 <b aria-hidden="true">↗</b>
@@ -317,47 +247,12 @@ export default function Home() {
           </div>
           <div className="contact-actions">
             <a className="button button-gold" href="tel:+16612180111">Call 661 218 0111</a>
-            <a className="button button-light" href="sms:+16612180111">Send a text</a>
+            <a className="button button-light" href="/start">What to expect</a>
           </div>
         </div>
       </section>
 
-      <footer className="footer">
-        <div className="shell footer-grid">
-          <div className="footer-brand">
-            <a className="brand brand-inverse" href="#top">
-              <span className="brand-name">
-                <strong>Bakersfield</strong>
-                <span>Doc Prep Co.</span>
-              </span>
-            </a>
-            <p>
-              Affordable, organized, and reliable legal document preparation
-              throughout California.
-            </p>
-          </div>
-          <div>
-            <h3>Explore</h3>
-            <a href="#services">Services</a>
-            <a href="#process">How it works</a>
-            <a href="#about">About</a>
-          </div>
-          <div>
-            <h3>Contact</h3>
-            <a href="tel:+16612180111">661 218 0111</a>
-            <span>California LDA #232</span>
-            <span>Registered &amp; Bonded</span>
-          </div>
-        </div>
-        <div className="shell footer-bottom">
-          <p>
-            Bakersfield Doc Prep Co. is a registered and bonded California Legal
-            Document Assistant. We are not attorneys, cannot provide legal advice,
-            and cannot represent clients in court.
-          </p>
-          <span>© {new Date().getFullYear()} Bakersfield Doc Prep Co.</span>
-        </div>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }
