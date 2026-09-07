@@ -13,7 +13,9 @@ export function SiteFooter() {
           <a href="/services">Services</a>
           <a href="/how-it-works">How it works</a>
           <a href="/about">About</a>
+          <a href="/locations">Locations we serve</a>
           <a href="/resources">Resources</a>
+          <a href="/blog">Blog</a>
         </div>
         <div>
           <h3>Contact</h3>

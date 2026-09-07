@@ -1,12 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { LocationLists } from "./LocationLists";
 
 const links = [
   ["Services", "/services"],
   ["How it works", "/how-it-works"],
   ["About", "/about"],
+  ["Locations we serve", "/locations"],
   ["Resources", "/resources"],
+  ["Blog", "/blog"],
 ];
 
 export function SiteHeader() {
@@ -36,7 +39,23 @@ export function SiteHeader() {
             <span className="brand-name"><strong>Bakersfield</strong><span>Doc Prep Co.</span></span>
           </a>
           <nav className="desktop-nav" aria-label="Primary navigation">
-            {links.map(([label, href]) => <a href={href} key={href}>{label}</a>)}
+            {links.map(([label, href]) =>
+              href === "/locations" ? (
+                <div className="nav-dropdown" key={href}>
+                  <a href={href} aria-haspopup="true">
+                    {label} <span aria-hidden="true">▾</span>
+                  </a>
+                  <div className="nav-dropdown-panel">
+                    <div className="shell">
+                      <LocationLists compact />
+                      <a className="nav-dropdown-link" href={href}>View all locations ↗</a>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <a href={href} key={href}>{label}</a>
+              ),
+            )}
           </nav>
           <a className="button button-outline nav-cta" href="/start">Start your documents</a>
           <button
