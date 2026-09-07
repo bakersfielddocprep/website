@@ -15,7 +15,7 @@ const sans = Manrope({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://bakersfield-doc-prep.danny-villan.chatgpt.site"),
+  metadataBase: new URL("https://www.bakersfielddocprep.com"),
   title: {
     default: "Bakersfield Doc Prep Co. | California Legal Document Assistant",
     template: "%s",
