@@ -98,3 +98,29 @@ actions tied to the current ChatGPT user. Leave public content anonymous.
 
 - [vinext Documentation](https://github.com/cloudflare/vinext)
 - [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)
+
+## Blog (Sanity CMS)
+
+Blog posts are written in Sanity and published without touching the code.
+
+- Editor: `/studio` on the live site (schema in `sanity/schemaTypes/`, config in `sanity.config.ts`)
+- Pages: `app/blog/page.tsx` (index) and `app/blog/[slug]/page.tsx` (single post)
+- Data helpers: `sanity/lib/` (client, GROQ queries, image URLs)
+- Refresh webhook: `app/api/revalidate/route.ts`
+
+### One-time setup
+
+1. In [sanity.io/manage](https://www.sanity.io/manage) create a project and a `production` dataset. Copy the project ID.
+2. Under the project's **API → CORS origins**, add the site's URL (and `http://localhost:3000` for local work) with credentials allowed.
+3. Set the variables from `.env.example` in the hosting environment (Vercel → Settings → Environment Variables):
+   `NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET`, `SANITY_REVALIDATE_SECRET`.
+4. Under **API → Webhooks**, add a webhook: URL `https://<site>/api/revalidate`, dataset `production`,
+   trigger on create/update/delete, filter `_type == "post"`, projection `{_type, "slug": slug.current}`,
+   HTTP method POST, secret = the same `SANITY_REVALIDATE_SECRET`.
+5. Under **Members**, invite the client with the Editor role. They sign in at `/studio`.
+
+Blog pages also refresh themselves once an hour, so a missed webhook only delays a post briefly.
+
+## Locations
+
+County lists for the "Locations we serve" menu and page live in `lib/locations.ts`.
