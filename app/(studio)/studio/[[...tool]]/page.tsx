@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { NextStudio } from "next-sanity/studio";
-import { isSanityConfigured } from "../../../sanity/env";
-import config from "../../../sanity.config";
+import { isSanityConfigured } from "../../../../sanity/env";
+import config from "../../../../sanity.config";
 
 export const dynamic = "force-static";
 
