@@ -22,19 +22,30 @@ export type Post = PostSummary & {
 /** Pages are revalidated on this schedule and immediately by the Sanity webhook. */
 const fetchOptions = { next: { revalidate: 3600, tags: ["post"] } };
 
-export async function getPosts(): Promise<PostSummary[]> {
-  if (!isSanityConfigured) return [];
-  return client.fetch<PostSummary[]>(postsQuery, {}, fetchOptions);
+/**
+ * Runs a Sanity query but never throws: if Sanity is unreachable (during a build
+ * or an outage) the site keeps rendering with the fallback instead of failing.
+ */
+async function safeFetch<T>(label: string, fallback: T, query: string, params: Record<string, unknown> = {}): Promise<T> {
+  if (!isSanityConfigured) return fallback;
+  try {
+    return await client.fetch<T>(query, params, fetchOptions);
+  } catch (error) {
+    console.warn(`[sanity] ${label} failed:`, error instanceof Error ? error.message : error);
+    return fallback;
+  }
 }
 
-export async function getPostSlugs(): Promise<string[]> {
-  if (!isSanityConfigured) return [];
-  return client.fetch<string[]>(postSlugsQuery, {}, fetchOptions);
+export function getPosts() {
+  return safeFetch<PostSummary[]>("getPosts", [], postsQuery);
 }
 
-export async function getPost(slug: string): Promise<Post | null> {
-  if (!isSanityConfigured) return null;
-  return client.fetch<Post | null>(postBySlugQuery, { slug }, fetchOptions);
+export function getPostSlugs() {
+  return safeFetch<string[]>("getPostSlugs", [], postSlugsQuery);
+}
+
+export function getPost(slug: string) {
+  return safeFetch<Post | null>("getPost", null, postBySlugQuery, { slug });
 }
 
 export function formatPostDate(value: string) {

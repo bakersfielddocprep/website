@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { InteriorPage, PageCta } from "../../components/InteriorPage";
-import { urlFor } from "../../sanity/lib/image";
-import { formatPostDate, getPosts } from "../../sanity/lib/posts";
+import { InteriorPage, PageCta } from "../../../components/InteriorPage";
+import { urlFor } from "../../../sanity/lib/image";
+import { formatPostDate, getPosts } from "../../../sanity/lib/posts";
 
 export const metadata: Metadata = {
   title: "Blog | Bakersfield Doc Prep Co.",

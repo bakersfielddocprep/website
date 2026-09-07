@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { InteriorPage, PageCta } from "../../../components/InteriorPage";
-import { getService, services } from "../../../lib/services";
+import { InteriorPage, PageCta } from "../../../../components/InteriorPage";
+import { getService, services } from "../../../../lib/services";
 
 export function generateStaticParams() {
   return services.map((service) => ({ slug: service.slug }));

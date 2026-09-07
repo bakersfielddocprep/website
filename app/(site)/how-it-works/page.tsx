@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { InteriorPage, PageCta } from "../../components/InteriorPage";
+import { InteriorPage, PageCta } from "../../../components/InteriorPage";
 
 export const metadata: Metadata = {
   title: "How Document Preparation Works | Bakersfield Doc Prep Co.",

@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PortableText, type PortableTextComponents } from "@portabletext/react";
-import { PageCta } from "../../../components/InteriorPage";
-import { SiteFooter } from "../../../components/SiteFooter";
-import { SiteHeader } from "../../../components/SiteHeader";
-import { urlFor } from "../../../sanity/lib/image";
-import { formatPostDate, getPost, getPostSlugs } from "../../../sanity/lib/posts";
+import { PageCta } from "../../../../components/InteriorPage";
+import { SiteFooter } from "../../../../components/SiteFooter";
+import { SiteHeader } from "../../../../components/SiteHeader";
+import { urlFor } from "../../../../sanity/lib/image";
+import { formatPostDate, getPost, getPostSlugs } from "../../../../sanity/lib/posts";
 
 type Params = { params: Promise<{ slug: string }> };
 

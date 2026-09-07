@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { InteriorPage, PageCta } from "../../components/InteriorPage";
-import { LocationLists } from "../../components/LocationLists";
+import { InteriorPage, PageCta } from "../../../components/InteriorPage";
+import { LocationLists } from "../../../components/LocationLists";
 
 export const metadata: Metadata = {
   title: "Locations We Serve | Bakersfield Doc Prep Co.",

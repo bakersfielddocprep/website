@@ -103,8 +103,8 @@ actions tied to the current ChatGPT user. Leave public content anonymous.
 
 Blog posts are written in Sanity and published without touching the code.
 
-- Editor: `/studio` on the live site (schema in `sanity/schemaTypes/`, config in `sanity.config.ts`)
-- Pages: `app/blog/page.tsx` (index) and `app/blog/[slug]/page.tsx` (single post)
+- Editor: `/studio` on the live site, isolated from the site stylesheet via the `app/(studio)` route group (schema in `sanity/schemaTypes/`, config in `sanity.config.ts`)
+- Pages: `app/(site)/blog/page.tsx` (index) and `app/(site)/blog/[slug]/page.tsx` (single post)
 - Data helpers: `sanity/lib/` (client, GROQ queries, image URLs)
 - Refresh webhook: `app/api/revalidate/route.ts`
 

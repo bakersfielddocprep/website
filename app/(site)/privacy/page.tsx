@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { InteriorPage } from "../../components/InteriorPage";
+import { InteriorPage } from "../../../components/InteriorPage";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | Bakersfield Doc Prep Co.",

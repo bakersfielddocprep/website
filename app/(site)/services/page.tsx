@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { InteriorPage, PageCta } from "../../components/InteriorPage";
-import { services } from "../../lib/services";
+import { InteriorPage, PageCta } from "../../../components/InteriorPage";
+import { services } from "../../../lib/services";
 
 export const metadata: Metadata = {
   title: "Legal Document Preparation Services | Bakersfield Doc Prep Co.",
