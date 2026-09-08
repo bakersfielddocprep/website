@@ -9,6 +9,8 @@ export type ServiceContent = {
   steps: [string, string][];
   faqs: [string, string][];
   resource: { label: string; url: string };
+  /** Where visitors go for help deciding which forms or procedure apply to them. */
+  helpResource?: { label: string; url: string };
   image?: string;
   imageAlt?: string;
 };
@@ -21,8 +23,8 @@ export const services: ServiceContent[] = [
     eyebrow: "Divorce & family documents",
     headline: "Clear documents for a complicated transition.",
     intro: [
-      "Family transitions already carry enough weight. We provide calm, organized document preparation for self-represented California clients who know which forms they want completed.",
-      "You supply the information and direct how it should be entered. We prepare the documents in a ministerial manner, help keep the packet organized, and return it for your review. We do not advise you about rights, strategy, property, support, custody, or which forms to choose.",
+      "Family transitions already carry enough weight. We provide calm, organized document preparation for self-represented California clients who have already decided which documents they want completed.",
+      "You supply the information and direct how it should be entered. We prepare the documents in a ministerial manner, help keep the packet organized, and return it for your review. We do not advise you about rights, strategy, property, support, custody, or which forms apply to your situation. For help with those decisions, contact the Kern County Superior Court Family Law Facilitator or Self-Help Center, or a licensed attorney.",
     ],
     includes: [
       "Petitions, responses, and summons documents identified by you",
@@ -31,16 +33,18 @@ export const services: ServiceContent[] = [
       "Default, agreement, and judgment documents selected at your direction",
     ],
     steps: [
-      ["Bring your direction", "Tell us which documents you want prepared and provide the information required for each form."],
+      ["Bring your direction", "Tell us which documents you have chosen to have prepared and provide the information each one requires."],
       ["We prepare", "We type, organize, and check the packet for completeness at your specific direction."],
       ["You review", "You verify every answer, sign where required, and decide when and how to file."],
     ],
     faqs: [
-      ["Can you tell me what I should request from the court?", "No. Only an attorney can advise you about legal rights, remedies, strategy, or what you should request. California Courts self-help resources or a lawyer can help with those decisions."],
+      ["How do I know which forms I need?", "We cannot make that determination. The Kern County Superior Court Family Law Facilitator and Self-Help Center offer free assistance with form selection and court procedure, and a licensed attorney can advise you about your specific situation. Once you know which documents you want, we prepare them at your direction."],
+      ["Can you tell me what I should request from the court?", "No. Only an attorney can advise you about legal rights, remedies, strategy, or what you should request. The Family Law Facilitator, California Courts self-help resources, or a lawyer can help with those decisions."],
       ["Can you represent me or speak for me in court?", "No. Bakersfield Doc Prep Co. prepares documents at a self-represented client's direction and does not appear in court or act as legal counsel."],
       ["Can you help with an uncontested matter?", "We can prepare documents you identify for an uncontested or agreed matter using the information and instructions you provide. We cannot determine whether an agreement protects your interests."],
     ],
     resource: { label: "California Courts: Divorce Self-Help Guide", url: "https://selfhelp.courts.ca.gov/divorce-california" },
+    helpResource: { label: "Kern County Superior Court Family Law Facilitator / Self-Help Center", url: "https://www.kern.courts.ca.gov/self-help" },
     image: "/images/service-divorce-family.jpg",
     imageAlt: "Family court forms and a pen on a warm wood table",
   },

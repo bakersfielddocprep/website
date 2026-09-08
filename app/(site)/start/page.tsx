@@ -26,10 +26,10 @@ export default function StartPage() {
             </ol>
           </div>
           <aside className="start-contact-card">
-            <p className="eyebrow">Call or text Samuel</p>
+            <p className="eyebrow">Schedule a document preparation appointment</p>
             <h2>661 218 0111</h2>
             <p>
-              Briefly describe the document-preparation service you are looking for.
+              Call or text Samuel and briefly describe the document-preparation service you are looking for.
               Please do not send Social Security numbers, payment information, medical records,
               or other sensitive documents by ordinary text message.
             </p>
