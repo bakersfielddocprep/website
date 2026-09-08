@@ -1708,6 +1708,16 @@ h1 {
   font-size: 14px;
 }
 
+.scope-notice p + p {
+  margin-top: 12px;
+}
+
+.scope-notice a {
+  color: var(--gold-deep);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .detail-list-section,
 .values-section,
 .responsibility-section,

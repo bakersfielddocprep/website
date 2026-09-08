@@ -3,6 +3,11 @@ import { notFound } from "next/navigation";
 import { InteriorPage, PageCta } from "../../../../components/InteriorPage";
 import { getService, services } from "../../../../lib/services";
 
+const defaultHelpResource = {
+  label: "Kern County Superior Court Self-Help Center",
+  url: "https://www.kern.courts.ca.gov/self-help",
+};
+
 export function generateStaticParams() {
   return services.map((service) => ({ slug: service.slug }));
 }
@@ -21,6 +26,7 @@ export default async function ServiceDetail({ params }: { params: Promise<{ slug
   const { slug } = await params;
   const service = getService(slug);
   if (!service) notFound();
+  const help = service.helpResource ?? defaultHelpResource;
 
   return (
     <InteriorPage eyebrow={service.eyebrow} title={service.headline} intro={service.intro[0]}>
@@ -43,6 +49,10 @@ export default async function ServiceDetail({ params }: { params: Promise<{ slug
                 represent you or advise about legal rights, remedies, defenses, options,
                 form selection, or strategy. You select the documents, provide the information,
                 and direct how they are completed.
+              </p>
+              <p>
+                Need help deciding which forms or court procedure apply to you? Contact the{" "}
+                <a href={help.url} target="_blank" rel="noreferrer">{help.label}</a> or a licensed attorney.
               </p>
             </div>
           </div>

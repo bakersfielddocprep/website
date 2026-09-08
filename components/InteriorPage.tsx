@@ -49,8 +49,8 @@ export function PageCta({
           <p>{copy}</p>
         </div>
         <div className="contact-actions">
-          <a className="button button-gold" href="tel:+16612180111">Call 661 218 0111</a>
-          <a className="button button-light" href="/start">What to expect</a>
+          <a className="button button-gold" href="/start">Schedule a document preparation appointment</a>
+          <a className="button button-light" href="tel:+16612180111">Call 661 218 0111</a>
         </div>
       </div>
     </section>
